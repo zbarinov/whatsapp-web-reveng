@@ -394,6 +394,7 @@ message ProductSnapshot {
     optional string retailerId = 7;
     optional string url = 8;
     optional uint32 productImageCount = 9;
+    optional bool pseudoReply = 10;
 }
 
 message ProductMessage {
@@ -438,12 +439,18 @@ message Message {
     optional GroupInviteMessage groupInviteMessage = 28;
 }
 
+syntax = "proto2";
+package proto;
+
 message MessageKey {
     optional string remoteJid = 1;
     optional bool fromMe = 2;
     optional string id = 3;
     optional string participant = 4;
 }
+
+syntax = "proto2";
+package proto;
 
 message WebFeatures {
     enum WEB_FEATURES_FLAG {
@@ -473,6 +480,8 @@ message WebFeatures {
     optional WEB_FEATURES_FLAG voipIndividualVideo = 22;
     optional WEB_FEATURES_FLAG thirdPartyStickers = 23;
     optional WEB_FEATURES_FLAG frequentlyForwardedSetting = 24;
+    optional WEB_FEATURES_FLAG groupsV4JoinPermission = 25;
+    optional WEB_FEATURES_FLAG recentStickers = 26;
 }
 
 message TabletNotificationsInfo {
@@ -614,6 +623,7 @@ message WebMessageInfo {
         BIZ_TWO_TIER_MIGRATION_BOTTOM = 67;
         OVERSIZED = 68;
         GROUP_CHANGE_NO_FREQUENTLY_FORWARDED = 69;
+        GROUP_INVITE_REQUEST_REVOKE = 70;
     }
     optional WEB_MESSAGE_INFO_STUBTYPE messageStubType = 24;
     optional bool clearMedia = 25;
@@ -624,4 +634,3 @@ message WebMessageInfo {
     optional LiveLocationMessage finalLiveLocation = 30;
     optional PaymentInfo quotedPaymentInfo = 31;
 }
-
